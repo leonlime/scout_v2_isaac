@@ -6,18 +6,12 @@
 
 **Keywords:** simulation, Isaac, scout, agilex
 
-### Demonstration
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7o9y21d7H-U?si=F3a-gxTb6RUHaioJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ## License
 
 - The source code is released under a [MIT License](LICENSE).
 
 **Author:** 
 Leonardo Lima (leo.mendes21@hotmail.com)
-
-## Instalation
-To utilize this package, simply clone the repository and install all necessary dependencies.
 
 ## Dependencies
 The `scout_v2_isaac` package has been created and tested under Ubuntu 22.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
