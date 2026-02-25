@@ -22,7 +22,7 @@ setup(
     maintainer='leonardo lima',
     maintainer_email='leo.mendes21@hotmail.com',
     description='Isaac Sim simulation for Agilex Scout v2',
-    license='TODO: License declaration',
+    license='MIT license ',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
