@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
-from controller import Velocity_controller
+from scout_v2_ros2.controller import Velocity_controller
 from geometry_msgs.msg import Twist
 
 
