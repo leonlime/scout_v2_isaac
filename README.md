@@ -13,50 +13,96 @@
 **Author:** 
 Leonardo Lima (leo.mendes21@hotmail.com)
 
-## Dependencies
+## Prerequisites
 The `scout_v2_isaac` package has been created and tested under Ubuntu 22.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
 | OS | Isaac Sim | ROS 2 |
 | :---: | :---: | :---: |
-| [Ubuntu 22.04](https://releases.ubuntu.com/jammy/) | [2022.2.1](https://developer.nvidia.com/isaac/sim) | [Humble](https://docs.ros.org/en/humble/Installation.html) |
+| [Ubuntu 22.04](https://releases.ubuntu.com/jammy/) | [5.1.0](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/overview/release_notes.html) | [Humble](https://docs.ros.org/en/humble/Installation.html) |
+
+Install `navigation2` and `slam-toolbox` packages:
+```bash
+sudo apt update
+sudo apt install ros-humble-slam-toolbox
+sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup
+```
 
 ## How to use 
 ### Simulation setup
-First, you need to open the terminal and create a ROS2 workspace
-```
+Clone and build the repository inside a ROS 2 workspace:
+```bash
 mkdir -p scout_ws/src
 ```
-go to the src folder and clone the repository
-```
-cd scout_ws/src
+Clone the repository:
+```bash
+cd ~/scout_ws/src
 git clone https://github.com/leonlime/scout_v2_isaac.git
 ```
-
-build the package
+Navigate to workspace root and install dependencies:
+```bash
+cd ~/scout_ws
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
 ```
-cd ..
+
+Build the workspace:
+```bash
 source /opt/ros/humble/setup.bash
 colcon build
 ```
-### Running the simulation
-Open the terminal, navigate to the workspace you created before and source ROS2. Don’t forget, **always before opening Isaac Sim**, the first thing to do is start a terminal and source ROS2 Humble.
-```
-cd scout_ws
-source /opt/ros/humble/setup.bash
-```
-Open `Isaac sim`, inside Isaac sim, change the extension `ROS BRIDGE` to `ROS2 HUMBLE BRIDGE`. Open `scout_v2_simulation.usd` file and click in Isaac Play button.
 
-Go back to the terminal and check the ROS2 topics
+### Running the simulation
+Open the terminal, navigate to the workspace you created before and source ROS2:
+```bash
+cd ~/scout_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
 ```
+#### Launching Simulation
+1. Open **Isaac Sim 5.1**.
+2. Inside Isaac Sim, open the warehouse scene:
+   * Go to **File** > **Open**
+   * Navigate to the USD file inside the package:
+     ```text
+     scout_v2_isaac/isaac_models/warehouse_w_robot.usd
+     ```
+   * Click on **Play** button on the left menu and go back to the terminal.
+
+#### Check the ROS 2 topics
+```bash
 ros2 topic list
 ```
-To visualize the camera images, LiDAR and odometry, open Rviz
-```
+#### Visualize camera, map and navigation on Rviz
+```bash
 ros2 launch scout_v2_ros2 scout_v2_rviz.launch.py
 ```
-You can navigate using teleop twist command
+### Mapping and Navigation
+#### Start slam toolbox for mapping
+```bash
+ros2 launch scout_v2_ros2 slam_toolbox_online_async.launch.py
 ```
+#### Start navigation
+```bash
+ros2 launch scout_v2_ros2 navigation.launch.py
+```
+### Navigate using teleop 
+#### Keyboard teleop
+```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
+#### Joystick teleop
+```bash
+ros2 launch teleop_twist_joy teleop-launch.py
+```
+### Autonomous Navigation
+#### Waypoints navigation
+```bash
+ros2 run scout_v2_ros2 waypoints_navigation
+```
+#### Follow the green ball
+```bash
+ros2 run scout_v2_ros2 green_ball_detection
+```
 
-#### PS: If this simulation is too heavy for your PC. You can try disable left and right camera plugin.
+## Bugs & Feature Requests
+Please report bugs and request features using the [Issue Tracker](https://github.com/leonlime/scout_v2_isaac/issues).
