@@ -59,9 +59,22 @@ class green_ball_tracker(Node):
     def callback(self, data):
         center, radius = self.green_ball_detection(data)
 
+        target_radius = 180
+        radius_margin = 10
+
+        target_center = 645
+        center_margin = 15
+
         if center is not None:
-            linear_vel = self.linear_vel_control.calculate(1, 180, radius)
-            angular_vel = self.angular_vel_control.calculate(1, 645, center)
+            if abs(target_radius - radius) <= radius_margin:
+                linear_vel = 0
+            else:
+                linear_vel = self.linear_vel_control.calculate(1, target_radius, radius)
+
+            if abs(target_center - center) <= center_margin:
+                angular_vel = 0
+            else:
+                angular_vel = self.angular_vel_control.calculate(1, target_center, center)
 
             self.cmd_vel_pub(linear_vel, angular_vel)
 
