@@ -7,7 +7,7 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     scout_v2_ros2_path = get_package_share_directory('scout_v2_ros2')
     rviz_config_file = os.path.join(scout_v2_ros2_path,
-                                    'config/rviz',
+                                    'config',
                                     'config.rviz')
     print(scout_v2_ros2_path)
     print(rviz_config_file)
@@ -16,6 +16,6 @@ def generate_launch_description():
         Node(package="rviz2",
              executable="rviz2",
              name='rviz2',
-             arguments=['-d', rviz_config_file])
+             arguments=['-d', rviz_config_file],
+             parameters=[{"use_sim_time": True}])
     ])
-    

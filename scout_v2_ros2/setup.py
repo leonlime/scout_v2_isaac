@@ -6,24 +6,28 @@ package_name = 'scout_v2_ros2'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='0.0.1',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
-        (os.path.join('share', package_name, 'config/rviz'), glob('config/rviz/*.rviz')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.rviz')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
+        (os.path.join('share', package_name, 'config'), glob('scripts/*.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='leonardo lima',
     maintainer_email='leo.mendes21@hotmail.com',
     description='Isaac Sim simulation for Agilex Scout v2',
-    license='TODO: License declaration',
+    license='MIT license ',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'green_ball_detection = scout_v2_ros2.green_ball_detection:main',
+            'waypoints_navigation = scout_v2_ros2.waypoints_navigation:main',
         ],
     },
 )

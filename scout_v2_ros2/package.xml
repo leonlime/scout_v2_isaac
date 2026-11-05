@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>Isaac Sim simulation for Agilex Scout v2</description>
   <maintainer email="leo.mendes21@hotmail.com">leo</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT license</license>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
