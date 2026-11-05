@@ -4,7 +4,7 @@
 
 - Agilex Scout v2.0 simulation for NVIDIA Isaac Sim.
 
-**Keywords:** simulation, Isaac, scout, agilex
+**Keywords:** simulation, Isaac, scout, agilex, NVIDIA
 
 ## License
 
@@ -93,6 +93,10 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 #### Joystick teleop
 ```bash
 ros2 launch teleop_twist_joy teleop-launch.py
+```
+If you are using PS4 Joystick
+```bash
+ros2 run teleop_twist_joy teleop_node --ros-args -p axis_linear.x:=1 -p axis_angular.yaw:=3 -p scale_linear.x:=0.5 -p scale_angular.yaw:=1.0 -p require_enable_button:=false
 ```
 ### Autonomous Navigation
 #### Waypoints navigation
